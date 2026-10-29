@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Lata de guaraná gelada">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="32%" r="78%">
+      <stop offset="0" stop-color="#363a2d"/>
+      <stop offset="0.55" stop-color="#1d211a"/>
+      <stop offset="1" stop-color="#0d100c"/>
+    </radialGradient>
+    <linearGradient id="can" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1c4a1d"/>
+      <stop offset="0.1" stop-color="#38852f"/>
+      <stop offset="0.26" stop-color="#69b95c"/>
+      <stop offset="0.38" stop-color="#49a03c"/>
+      <stop offset="0.62" stop-color="#2f7d2c"/>
+      <stop offset="0.85" stop-color="#256427"/>
+      <stop offset="1" stop-color="#123213"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#f4f7f9"/>
+      <stop offset="0.4" stop-color="#c7d0d6"/>
+      <stop offset="0.75" stop-color="#98a3aa"/>
+      <stop offset="1" stop-color="#dbe2e6"/>
+    </linearGradient>
+    <linearGradient id="label" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#123c13"/>
+      <stop offset="0.28" stop-color="#2b6b24"/>
+      <stop offset="0.5" stop-color="#367d2c"/>
+      <stop offset="0.74" stop-color="#215a1f"/>
+      <stop offset="1" stop-color="#0f2f10"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="0.62" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+    <filter id="drop" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="2.6"/>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g fill="#d6ffb0" opacity="0.1" filter="url(#soft)">
+    <circle cx="150" cy="180" r="54"/><circle cx="872" cy="140" r="66"/><circle cx="924" cy="656" r="46"/>
+    <circle cx="92" cy="700" r="40"/><circle cx="300" cy="88" r="26"/><circle cx="758" cy="884" r="30"/>
+    <circle cx="636" cy="82" r="18"/>
+  </g>
+
+  <g id="subject" transform="translate(512 512) scale(1.42) translate(-512 -512)">
+    <ellipse cx="512" cy="290" rx="330" ry="250" fill="#c9f09a" opacity="0.07" filter="url(#soft)"/>
+    <ellipse cx="512" cy="862" rx="238" ry="38" fill="#000000" opacity="0.65" filter="url(#soft)"/>
+    <ellipse cx="512" cy="850" rx="150" ry="20" fill="#000000" opacity="0.45"/>
+
+    <path d="M356 292h312v536c0 22-14 36-36 40-38 6-80 9-120 9s-82-3-120-9c-22-4-36-18-36-40z" fill="url(#can)"/>
+
+    <path d="M356 392h312v168c-34 20-66 20-100 6-34-14-68-14-102 0-36 15-74 15-110-4z" fill="url(#label)"/>
+    <path d="M356 392h312v168c-34 20-66 20-100 6-34-14-68-14-102 0-36 15-74 15-110-4z" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="3"/>
+    <g opacity="0.94">
+      <circle cx="512" cy="474" r="58" fill="#f2f8ea" opacity="0.94"/>
+      <circle cx="512" cy="474" r="33" fill="#e0a52a"/>
+      <circle cx="500" cy="463" r="9" fill="#f6cb63"/>
+      <path d="M492 496c12 8 38 8 50-2" stroke="#8f5f10" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.5"/>
+    </g>
+
+    <rect x="390" y="300" width="46" height="530" rx="23" fill="url(#shine)"/>
+    <rect x="600" y="316" width="20" height="500" rx="10" fill="#ffffff" opacity="0.12"/>
+    <path d="M356 750c40 14 84 20 156 20s116-6 156-20v-14c-40 14-84 20-156 20s-116-6-156-20z" fill="#000000" opacity="0.16"/>
+
+    <ellipse cx="512" cy="292" rx="156" ry="34" fill="#123d13"/>
+    <ellipse cx="512" cy="286" rx="156" ry="33" fill="url(#lid)"/>
+    <ellipse cx="512" cy="288" rx="128" ry="25" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="3"/>
+    <ellipse cx="512" cy="286" rx="104" ry="19" fill="#b9c3c9" opacity="0.75"/>
+    <ellipse cx="512" cy="282" rx="88" ry="15" fill="#e7edf0" opacity="0.85"/>
+    <g>
+      <rect x="480" y="272" width="64" height="18" rx="9" fill="#8d979d"/>
+      <rect x="486" y="275" width="52" height="12" rx="6" fill="#cfd8dd"/>
+      <circle cx="512" cy="281" r="7" fill="#6d777d"/>
+    </g>
+
+    <g fill="#ffffff" opacity="0.24" filter="url(#drop)">
+      <circle cx="404" cy="356" r="7"/><circle cx="432" cy="416" r="5"/><circle cx="398" cy="486" r="6"/>
+      <circle cx="442" cy="580" r="4.5"/><circle cx="412" cy="642" r="6.5"/><circle cx="452" cy="714" r="5"/>
+      <circle cx="424" cy="774" r="4"/><circle cx="606" cy="372" r="5"/><circle cx="620" cy="452" r="6.5"/>
+      <circle cx="592" cy="524" r="4.5"/><circle cx="628" cy="600" r="5.5"/><circle cx="598" cy="678" r="6"/>
+      <circle cx="630" cy="744" r="4.5"/><circle cx="566" cy="800" r="5"/><circle cx="468" cy="812" r="4.5"/>
+      <circle cx="540" cy="330" r="4"/>
+    </g>
+  </g>
+</svg>

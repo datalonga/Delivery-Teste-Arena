@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17151a">
+  <meta name="robots" content="noindex">
+  <title>Painel do lojista — Brasa Delivery</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ====================== LOGIN ====================== -->
+  <div class="login" id="login-screen">
+    <div class="login__panel">
+      <div class="login__brand">
+        <img src="assets/logo.svg" alt="Logotipo da loja" width="54" height="54">
+        <div>
+          <strong id="login-store-name">Brasa Delivery</strong>
+          <span>Painel do lojista</span>
+        </div>
+      </div>
+
+      <h1 class="login__title">Acesse sua loja</h1>
+      <p class="login__sub">Gerencie produtos, categorias, pedidos e configurações.</p>
+
+      <form class="login__form" id="login-form" novalidate>
+        <div class="field">
+          <label class="field__label" for="login-user">Usuário</label>
+          <input type="text" id="login-user" name="usuario" autocomplete="username" placeholder="admin" required>
+        </div>
+        <div class="field">
+          <label class="field__label" for="login-pass">Senha</label>
+          <input type="password" id="login-pass" name="senha" autocomplete="current-password" placeholder="••••••••" required>
+        </div>
+        <p class="login__error" id="login-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn--primary btn--block btn--lg" id="login-submit">
+          Entrar no painel
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </button>
+      </form>
+
+      <div class="login__hint">
+        <strong>Acesso de demonstração</strong>
+        <p>Usuário <code>admin</code> · Senha <code>admin123</code></p>
+        <small>Não há autenticação real: os dados ficam salvos apenas neste navegador.</small>
+      </div>
+
+      <a class="login__back" href="index.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg>
+        Voltar para a loja
+      </a>
+    </div>
+  </div>
+
+  <!-- ====================== APP ====================== -->
+  <div class="admin" id="admin-app" hidden>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <img src="assets/logo.svg" alt="" width="40" height="40">
+        <div>
+          <strong data-store="nomeLoja">Brasa Delivery</strong>
+          <span>Painel do lojista</span>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Menu do painel">
+        <button type="button" class="nav-item is-active" data-view="dashboard">
+          <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
+          <span>Dashboard</span>
+        </button>
+        <button type="button" class="nav-item" data-view="pedidos">
+          <svg class="icon" aria-hidden="true"><use href="#i-receipt"></use></svg>
+          <span>Pedidos</span>
+          <span class="nav-item__badge" id="nav-orders-badge" hidden>0</span>
+        </button>
+        <button type="button" class="nav-item" data-view="produtos">
+          <svg class="icon" aria-hidden="true"><use href="#i-box"></use></svg>
+          <span>Produtos</span>
+        </button>
+        <button type="button" class="nav-item" data-view="categorias">
+          <svg class="icon" aria-hidden="true"><use href="#i-tags"></use></svg>
+          <span>Categorias</span>
+        </button>
+        <button type="button" class="nav-item" data-view="configuracoes">
+          <svg class="icon" aria-hidden="true"><use href="#i-settings"></use></svg>
+          <span>Configurações</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="user-chip">
+          <span class="user-chip__avatar" aria-hidden="true">
+            <svg class="icon"><use href="#i-user"></use></svg>
+          </span>
+          <div>
+            <strong id="user-name">Lojista</strong>
+            <span>Acesso de demonstração</span>
+          </div>
+        </div>
+        <button type="button" class="btn btn--ghost btn--sm btn--block" id="logout-side">
+          <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+          Sair
+        </button>
+      </div>
+    </aside>
+
+    <!-- Conteúdo -->
+    <div class="admin__main">
+      <header class="admin-topbar">
+        <div class="admin-topbar__title">
+          <h1 id="view-title">Dashboard</h1>
+          <p id="view-sub">Visão geral da loja</p>
+        </div>
+        <div class="admin-topbar__actions">
+          <a class="btn btn--ghost btn--sm" href="index.html" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg>
+            <span class="hide-sm">Ver loja</span>
+          </a>
+          <button type="button" class="icon-btn" id="logout-top" aria-label="Sair do painel">
+            <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <!-- DASHBOARD -->
+        <section class="view" id="view-dashboard">
+          <div class="stat-grid">
+            <article class="stat-card stat-card--primary">
+              <span class="stat-card__label">Faturamento hoje</span>
+              <strong class="stat-card__value" id="stat-revenue">R$ 0,00</strong>
+              <span class="stat-card__hint" id="stat-revenue-hint">Nenhum pedido ainda hoje</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__label">Pedidos hoje</span>
+              <strong class="stat-card__value" id="stat-orders-today">0</strong>
+              <span class="stat-card__hint" id="stat-orders-hint">de 0 no total</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__label">Produtos ativos</span>
+              <strong class="stat-card__value" id="stat-products">0</strong>
+              <span class="stat-card__hint" id="stat-products-hint">0 produtos no cardápio</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__label">Categorias</span>
+              <strong class="stat-card__value" id="stat-categories">0</strong>
+              <span class="stat-card__hint" id="stat-categories-hint">0 ativas</span>
+            </article>
+          </div>
+
+          <div class="panel-grid">
+            <section class="panel">
+              <header class="panel__head">
+                <div>
+                  <h2 class="panel__title">Faturamento dos últimos 7 dias</h2>
+                  <p class="panel__sub" id="chart-total">R$ 0,00 no período</p>
+                </div>
+              </header>
+              <div class="chart" id="chart" role="img" aria-label="Gráfico de faturamento dos últimos sete dias"></div>
+            </section>
+
+            <section class="panel">
+              <header class="panel__head">
+                <div>
+                  <h2 class="panel__title">Pedidos recentes</h2>
+                  <p class="panel__sub">Últimas movimentações da loja</p>
+                </div>
+                <button type="button" class="btn btn--link btn--sm" data-goto="pedidos">Ver todos</button>
+              </header>
+              <div class="recent-orders" id="recent-orders"></div>
+            </section>
+          </div>
+
+          <section class="panel">
+            <header class="panel__head">
+              <div>
+                <h2 class="panel__title">Atalhos</h2>
+                <p class="panel__sub">O que você quer fazer agora?</p>
+              </div>
+            </header>
+            <div class="quick-actions">
+              <button type="button" class="quick-action" id="quick-new-product">
+                <span class="quick-action__icon"><svg class="icon"><use href="#i-plus"></use></svg></span>
+                <span><strong>Novo produto</strong><small>Adicionar ao cardápio</small></span>
+              </button>
+              <button type="button" class="quick-action" data-goto="pedidos">
+                <span class="quick-action__icon"><svg class="icon"><use href="#i-receipt"></use></svg></span>
+                <span><strong>Ver pedidos</strong><small>Acompanhar entregas</small></span>
+              </button>
+              <button type="button" class="quick-action" data-goto="configuracoes">
+                <span class="quick-action__icon"><svg class="icon"><use href="#i-settings"></use></svg></span>
+                <span><strong>Configurações</strong><small>Frete, WhatsApp e loja</small></span>
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <!-- PEDIDOS -->
+        <section class="view" id="view-pedidos" hidden>
+          <div class="toolbar">
+            <div class="filter-chips" id="order-filters" role="group" aria-label="Filtrar pedidos por status"></div>
+          </div>
+          <div class="order-list" id="orders-list"></div>
+        </section>
+
+        <!-- PRODUTOS -->
+        <section class="view" id="view-produtos" hidden>
+          <div class="toolbar">
+            <div class="search search--compact">
+              <svg class="icon search__icon" aria-hidden="true"><use href="#i-search"></use></svg>
+              <input type="search" id="product-search" class="search__input" placeholder="Buscar produto" aria-label="Buscar produto">
+            </div>
+            <button type="button" class="btn btn--primary" id="new-product">
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
+              Novo produto
+            </button>
+          </div>
+
+          <div class="table-wrap" id="products-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Produto</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col" class="ta-right">Preço</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="ta-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="products-tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="admin-cards" id="products-cards"></div>
+        </section>
+
+        <!-- CATEGORIAS -->
+        <section class="view" id="view-categorias" hidden>
+          <div class="toolbar">
+            <p class="toolbar__note">As categorias organizam o cardápio e a barra de filtros do cliente.</p>
+            <button type="button" class="btn btn--primary" id="new-category">
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
+              Nova categoria
+            </button>
+          </div>
+          <div class="category-grid" id="categories-grid"></div>
+        </section>
+
+        <!-- CONFIGURAÇÕES -->
+        <section class="view" id="view-configuracoes" hidden>
+          <div class="panel-grid panel-grid--stack">
+            <section class="panel">
+              <header class="panel__head">
+                <div>
+                  <h2 class="panel__title">Dados da loja</h2>
+                  <p class="panel__sub">Aparecem no cardápio e na mensagem do WhatsApp</p>
+                </div>
+              </header>
+              <form class="form form--grid" id="settings-form" novalidate>
+                <div class="field">
+                  <label class="field__label" for="set-nome">Nome da loja</label>
+                  <input type="text" id="set-nome" name="nomeLoja" maxlength="60" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-cidade">Cidade</label>
+                  <input type="text" id="set-cidade" name="cidade" maxlength="60">
+                </div>
+                <div class="field field--full">
+                  <label class="field__label" for="set-descricao">Descrição</label>
+                  <input type="text" id="set-descricao" name="descricao" maxlength="120">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-whats">WhatsApp (com DDI e DDD)</label>
+                  <input type="text" id="set-whats" name="telefoneWhatsApp" inputmode="numeric" placeholder="5589999999999" required>
+                  <span class="field__hint">Somente números. Ex.: 55 + 89 + número.</span>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-horario">Horário de funcionamento</label>
+                  <input type="text" id="set-horario" name="horario" maxlength="80" placeholder="Terça a domingo · 18h às 23h30">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-frete">Frete fixo (R$)</label>
+                  <input type="text" id="set-frete" name="frete" inputmode="decimal" placeholder="5,00">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-tempo">Tempo estimado de entrega</label>
+                  <input type="text" id="set-tempo" name="tempoEntrega" maxlength="40" placeholder="30-50 min">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-minimo">Pedido mínimo (R$)</label>
+                  <input type="text" id="set-minimo" name="pedidoMinimo" inputmode="decimal" placeholder="0,00">
+                  <span class="field__hint">Use 0 para não exigir mínimo.</span>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-aberto">Status da loja</label>
+                  <label class="switch">
+                    <input type="checkbox" id="set-aberto" name="aberto">
+                    <span class="switch__track" aria-hidden="true"></span>
+                    <span class="switch__label" id="set-aberto-label">Aberta</span>
+                  </label>
+                </div>
+                <div class="form__actions field--full">
+                  <button type="submit" class="btn btn--primary" id="save-settings">
+                    <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                    Salvar alterações
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel">
+              <header class="panel__head">
+                <div>
+                  <h2 class="panel__title">Dados e backup</h2>
+                  <p class="panel__sub">Tudo fica salvo no localStorage deste navegador</p>
+                </div>
+              </header>
+              <div class="tool-list">
+                <div class="tool-row">
+                  <div>
+                    <strong>Exportar dados</strong>
+                    <span>Baixe um JSON com produtos, categorias, configurações e pedidos.</span>
+                  </div>
+                  <button type="button" class="btn btn--ghost btn--sm" id="export-data">
+                    <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                    Exportar
+                  </button>
+                </div>
+                <div class="tool-row">
+                  <div>
+                    <strong>Importar dados</strong>
+                    <span>Restaure um backup exportado anteriormente.</span>
+                  </div>
+                  <label class="btn btn--ghost btn--sm" for="import-file">
+                    <svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg>
+                    Importar
+                  </label>
+                  <input type="file" id="import-file" accept="application/json,.json" class="sr-only">
+                </div>
+                <div class="tool-row">
+                  <div>
+                    <strong>Limpar pedidos</strong>
+                    <span>Remove o histórico de pedidos salvos neste navegador.</span>
+                  </div>
+                  <button type="button" class="btn btn--ghost btn--sm" id="clear-orders">
+                    <svg class="icon" aria-hidden="true"><use href="#i-trash"></use></svg>
+                    Limpar
+                  </button>
+                </div>
+                <div class="tool-row tool-row--danger">
+                  <div>
+                    <strong>Restaurar dados de demonstração</strong>
+                    <span>Apaga suas alterações e volta ao cardápio de exemplo.</span>
+                  </div>
+                  <button type="button" class="btn btn--danger btn--sm" id="reset-demo">
+                    <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+                    Restaurar
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Navegação inferior (mobile) -->
+    <nav class="bottom-nav" aria-label="Menu do painel">
+      <button type="button" class="bottom-nav__item is-active" data-view="dashboard" aria-label="Dashboard">
+        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
+        <span>Painel</span>
+      </button>
+      <button type="button" class="bottom-nav__item" data-view="pedidos" aria-label="Pedidos">
+        <svg class="icon" aria-hidden="true"><use href="#i-receipt"></use></svg>
+        <span>Pedidos</span>
+      </button>
+      <button type="button" class="bottom-nav__item" data-view="produtos" aria-label="Produtos">
+        <svg class="icon" aria-hidden="true"><use href="#i-box"></use></svg>
+        <span>Produtos</span>
+      </button>
+      <button type="button" class="bottom-nav__item" data-view="categorias" aria-label="Categorias">
+        <svg class="icon" aria-hidden="true"><use href="#i-tags"></use></svg>
+        <span>Categorias</span>
+      </button>
+      <button type="button" class="bottom-nav__item" data-view="configuracoes" aria-label="Configurações">
+        <svg class="icon" aria-hidden="true"><use href="#i-settings"></use></svg>
+        <span>Ajustes</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ====================== MODAL PRODUTO ====================== -->
+  <div class="modal modal--center" id="modal-product-form" role="dialog" aria-modal="true" aria-labelledby="pf-title" hidden>
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__sheet sheet--form" role="document">
+      <header class="sheet__head">
+        <div class="sheet__head-text sheet__head-text--left">
+          <h2 class="sheet__head-title" id="pf-title">Novo produto</h2>
+          <p class="sheet__head-sub">Preencha os dados do item do cardápio</p>
+        </div>
+        <button type="button" class="icon-btn" data-close aria-label="Fechar">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </header>
+
+      <div class="sheet__scroll">
+        <form class="form" id="product-form" novalidate>
+          <input type="hidden" id="pf-id">
+          <div class="field">
+            <label class="field__label" for="pf-nome">Nome do produto <span class="req">*</span></label>
+            <input type="text" id="pf-nome" maxlength="60" required placeholder="Ex.: X-Burger Clássico">
+            <span class="field__error" id="err-pf-nome"></span>
+          </div>
+          <div class="field">
+            <label class="field__label" for="pf-descricao">Descrição</label>
+            <textarea id="pf-descricao" rows="3" maxlength="220" placeholder="Ingredientes, tamanho, acompanhamentos…"></textarea>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label class="field__label" for="pf-preco">Preço (R$) <span class="req">*</span></label>
+              <input type="text" id="pf-preco" inputmode="decimal" placeholder="0,00" required>
+              <span class="field__error" id="err-pf-preco"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="pf-categoria">Categoria <span class="req">*</span></label>
+              <select id="pf-categoria" required></select>
+              <span class="field__error" id="err-pf-categoria"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="pf-imagem">Imagem (caminho)</label>
+            <input type="text" id="pf-imagem" placeholder="assets/produtos/produto.jpg">
+            <span class="field__hint">Use um arquivo dentro de <code>assets/produtos/</code>. Deixe vazio para usar o placeholder.</span>
+          </div>
+          <div class="pf-preview">
+            <img id="pf-preview-img" src="assets/produtos/placeholder.svg" alt="Pré-visualização da imagem do produto" width="96" height="96">
+            <div class="pf-toggles">
+              <label class="switch">
+                <input type="checkbox" id="pf-disponivel" checked>
+                <span class="switch__track" aria-hidden="true"></span>
+                <span class="switch__label">Disponível no cardápio</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="pf-destaque">
+                <span class="switch__track" aria-hidden="true"></span>
+                <span class="switch__label">Destacar em “Mais pedidos”</span>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <footer class="sheet__footer">
+        <div class="sheet__footer-row">
+          <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+          <button type="button" class="btn btn--primary" id="save-product">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+            Salvar produto
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ====================== MODAL CATEGORIA ====================== -->
+  <div class="modal modal--center" id="modal-category-form" role="dialog" aria-modal="true" aria-labelledby="cf-title" hidden>
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__sheet sheet--form" role="document">
+      <header class="sheet__head">
+        <div class="sheet__head-text sheet__head-text--left">
+          <h2 class="sheet__head-title" id="cf-title">Nova categoria</h2>
+          <p class="sheet__head-sub">Agrupe produtos do cardápio</p>
+        </div>
+        <button type="button" class="icon-btn" data-close aria-label="Fechar">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </header>
+
+      <div class="sheet__scroll">
+        <form class="form" id="category-form" novalidate>
+          <input type="hidden" id="cf-id">
+          <div class="field">
+            <label class="field__label" for="cf-nome">Nome da categoria <span class="req">*</span></label>
+            <input type="text" id="cf-nome" maxlength="40" required placeholder="Ex.: Hambúrgueres">
+            <span class="field__error" id="err-cf-nome"></span>
+          </div>
+          <div class="field">
+            <label class="field__label" for="cf-icone">Ícone (emoji)</label>
+            <input type="text" id="cf-icone" maxlength="4" placeholder="🍔">
+            <div class="emoji-picks" id="emoji-picks" aria-label="Sugestões de ícones"></div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="cf-ativa" checked>
+            <span class="switch__track" aria-hidden="true"></span>
+            <span class="switch__label">Categoria ativa</span>
+          </label>
+        </form>
+      </div>
+
+      <footer class="sheet__footer">
+        <div class="sheet__footer-row">
+          <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+          <button type="button" class="btn btn--primary" id="save-category">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+            Salvar categoria
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ====================== MODAL PEDIDO ====================== -->
+  <div class="modal modal--center" id="modal-order" role="dialog" aria-modal="true" aria-labelledby="od-title" hidden>
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__sheet sheet--form sheet--order" role="document">
+      <header class="sheet__head">
+        <div class="sheet__head-text sheet__head-text--left">
+          <h2 class="sheet__head-title" id="od-title">Pedido</h2>
+          <p class="sheet__head-sub" id="od-sub"></p>
+        </div>
+        <button type="button" class="icon-btn" data-close aria-label="Fechar">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </header>
+      <div class="sheet__scroll" id="order-detail"></div>
+      <footer class="sheet__footer">
+        <div class="field">
+          <label class="field__label" for="od-status">Alterar status do pedido</label>
+          <select id="od-status"></select>
+        </div>
+        <div class="sheet__footer-row">
+          <button type="button" class="btn btn--ghost" data-close>Fechar</button>
+          <button type="button" class="btn btn--primary" id="save-status">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+            Atualizar status
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
