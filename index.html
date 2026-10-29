@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e63946">
+  <meta name="description" content="Brasa Delivery — hambúrguer artesanal, pizza e sobremesas com entrega rápida. Peça pelo cardápio digital e finalize no WhatsApp.">
+  <title>Brasa Delivery — cardápio e pedidos</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#menu">Ir para o cardápio</a>
+
+  <!-- ====================== CABEÇALHO ====================== -->
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html" aria-label="Página inicial">
+        <span class="brand__mark">
+          <img src="assets/logo.svg" alt="Logotipo da loja" width="46" height="46">
+        </span>
+        <span class="brand__text">
+          <strong class="brand__name" data-store="nomeLoja">Brasa Delivery</strong>
+          <span class="brand__desc" data-store="descricao">Carregando cardápio…</span>
+        </span>
+      </a>
+
+      <div class="topbar__actions">
+        <button class="icon-btn icon-btn--ghost" id="header-cart" type="button" aria-label="Abrir carrinho">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cart"></use></svg>
+          <span class="icon-btn__badge" id="header-cart-badge" hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <!-- ====================== INFORMAÇÕES DA LOJA ====================== -->
+    <section class="store-card" aria-label="Informações da loja">
+      <div class="store-card__glow" aria-hidden="true"></div>
+      <div class="store-card__head">
+        <span class="status-pill" id="store-status">
+          <span class="status-pill__dot" aria-hidden="true"></span>
+          <span id="store-status-text">Aberto agora</span>
+        </span>
+        <span class="store-card__city" id="store-city"></span>
+      </div>
+      <h1 class="store-card__title">Seu pedido favorito,<br>na porta de casa</h1>
+      <p class="store-card__text" id="store-hours"></p>
+      <div class="store-card__facts">
+        <div class="fact">
+          <svg class="icon" aria-hidden="true"><use href="#i-scooter"></use></svg>
+          <div><strong id="fact-time">30-50 min</strong><span>Tempo de entrega</span></div>
+        </div>
+        <div class="fact">
+          <svg class="icon" aria-hidden="true"><use href="#i-cash"></use></svg>
+          <div><strong id="fact-shipping">R$ 5,00</strong><span>Frete fixo</span></div>
+        </div>
+        <div class="fact">
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"></use></svg>
+          <div><strong id="fact-minimum">R$ 15,00</strong><span>Pedido mínimo</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== BUSCA ====================== -->
+    <div class="search-block">
+      <div class="search">
+        <svg class="icon search__icon" aria-hidden="true"><use href="#i-search"></use></svg>
+        <input
+          type="search"
+          id="search-input"
+          class="search__input"
+          placeholder="O que você quer pedir hoje?"
+          aria-label="Pesquisar no cardápio"
+          autocomplete="off"
+          enterkeyhint="search">
+        <button type="button" class="search__clear" id="search-clear" aria-label="Limpar pesquisa" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ====================== CATEGORIAS ====================== -->
+    <nav class="chips" id="categories" aria-label="Categorias do cardápio"></nav>
+
+    <!-- ====================== DESTAQUES ====================== -->
+    <section class="featured" id="featured" aria-labelledby="featured-title" hidden>
+      <div class="section-head">
+        <h2 class="section-head__title" id="featured-title">
+          <svg class="icon section-head__icon" aria-hidden="true"><use href="#i-flame"></use></svg>
+          Mais pedidos
+        </h2>
+        <span class="section-head__hint">Escolhas da casa</span>
+      </div>
+      <div class="featured__track" id="featured-track"></div>
+    </section>
+
+    <!-- ====================== CARDÁPIO ====================== -->
+    <div id="menu" class="menu">
+      <div class="skeleton-menu" id="menu-skeleton" aria-hidden="true">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-grid">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" id="empty-search" hidden>
+      <div class="empty-state__art" aria-hidden="true">
+        <svg class="icon"><use href="#i-search"></use></svg>
+      </div>
+      <h2 class="empty-state__title">Nenhum produto encontrado</h2>
+      <p class="empty-state__text">Tente pesquisar por outro nome ou escolha uma categoria diferente.</p>
+      <button type="button" class="btn btn--primary" id="empty-reset">Ver cardápio completo</button>
+    </div>
+  </main>
+
+  <!-- ====================== RODAPÉ ====================== -->
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="assets/logo.svg" alt="" width="34" height="34">
+        <div>
+          <strong data-store="nomeLoja">Brasa Delivery</strong>
+          <span data-store="cidade">Picos - PI</span>
+        </div>
+      </div>
+      <p class="site-footer__note">
+        Pedido enviado direto para o WhatsApp da loja. Seus dados ficam salvos apenas neste navegador.
+      </p>
+      <a class="site-footer__link" href="admin.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-store"></use></svg>
+        Área do lojista
+      </a>
+    </div>
+  </footer>
+
+  <!-- ====================== BARRA FLUTUANTE DO CARRINHO ====================== -->
+  <div class="cart-bar" id="cart-bar" hidden>
+    <button type="button" class="cart-bar__btn" id="cart-bar-btn" aria-label="Ver carrinho">
+      <span class="cart-bar__icon">
+        <svg class="icon" aria-hidden="true"><use href="#i-cart"></use></svg>
+        <span class="cart-bar__count" id="cart-bar-count">0</span>
+      </span>
+      <span class="cart-bar__text">
+        <strong id="cart-bar-label">Ver carrinho</strong>
+        <span id="cart-bar-sub">0 itens</span>
+      </span>
+      <span class="cart-bar__total" id="cart-bar-total">R$ 0,00</span>
+      <svg class="icon cart-bar__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+    </button>
+  </div>
+
+  <!-- ====================== MODAL DO PRODUTO ====================== -->
+  <div class="modal" id="modal-product" role="dialog" aria-modal="true" aria-labelledby="pm-name" hidden>
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__sheet sheet--product" role="document">
+      <div class="sheet__media">
+        <img id="pm-img" src="assets/produtos/placeholder.svg" alt="" width="1024" height="1024">
+        <button class="icon-btn icon-btn--glass sheet__close" type="button" data-close aria-label="Fechar detalhes do produto">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+        <span class="badge badge--off sheet__badge" id="pm-badge" hidden>Indisponível</span>
+      </div>
+      <div class="sheet__body">
+        <h2 class="sheet__title" id="pm-name"></h2>
+        <p class="sheet__desc" id="pm-desc"></p>
+        <div class="sheet__price" id="pm-price"></div>
+
+        <div class="stepper-row">
+          <span class="field__label">Quantidade</span>
+          <div class="stepper" role="group" aria-label="Quantidade do produto">
+            <button type="button" class="stepper__btn" id="pm-minus" aria-label="Diminuir quantidade">
+              <svg class="icon" aria-hidden="true"><use href="#i-minus"></use></svg>
+            </button>
+            <output class="stepper__value" id="pm-qty" aria-live="polite">1</output>
+            <button type="button" class="stepper__btn" id="pm-plus" aria-label="Aumentar quantidade">
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
+            </button>
+          </div>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Observação <small>opcional</small></span>
+          <textarea id="pm-note" rows="2" maxlength="160" placeholder="Ex.: sem cebola, ponto da carne, molho à parte…"></textarea>
+        </label>
+      </div>
+      <div class="sheet__footer">
+        <button type="button" class="btn btn--primary btn--block btn--lg" id="pm-add">
+          <svg class="icon" aria-hidden="true"><use href="#i-cart"></use></svg>
+          <span>Adicionar</span>
+          <span class="btn__price" id="pm-total">R$ 0,00</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================== MODAL DO CARRINHO ====================== -->
+  <div class="modal" id="modal-cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" hidden>
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__sheet sheet--cart" role="document">
+      <header class="sheet__head">
+        <button class="icon-btn" type="button" data-close aria-label="Voltar ao cardápio">
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg>
+        </button>
+        <div class="sheet__head-text">
+          <h2 class="sheet__head-title" id="cart-title">Carrinho</h2>
+          <p class="sheet__head-sub" id="cart-count-label">0 itens</p>
+        </div>
+        <button class="icon-btn" type="button" id="cart-clear-icon" aria-label="Limpar carrinho">
+          <svg class="icon" aria-hidden="true"><use href="#i-trash"></use></svg>
+        </button>
+      </header>
+
+      <div class="sheet__scroll">
+        <div class="cart-items" id="cart-items"></div>
+
+        <div class="empty-state empty-state--compact" id="cart-empty" hidden>
+          <div class="empty-state__art" aria-hidden="true">
+            <svg class="icon"><use href="#i-cart"></use></svg>
+          </div>
+          <h3 class="empty-state__title">Seu carrinho está vazio</h3>
+          <p class="empty-state__text">Adicione seus produtos favoritos para começar o pedido.</p>
+          <button type="button" class="btn btn--primary" data-close>Ver cardápio</button>
+        </div>
+      </div>
+
+      <footer class="sheet__footer" id="cart-footer">
+        <dl class="summary">
+          <div class="summary__row">
+            <dt>Subtotal</dt>
+            <dd id="cart-subtotal">R$ 0,00</dd>
+          </div>
+          <div class="summary__row">
+            <dt>Frete</dt>
+            <dd id="cart-shipping">R$ 0,00</dd>
+          </div>
+          <div class="summary__row summary__row--total">
+            <dt>Total</dt>
+            <dd id="cart-total">R$ 0,00</dd>
+          </div>
+        </dl>
+        <p class="hint hint--warning" id="cart-min-warning" hidden></p>
+        <button type="button" class="btn btn--primary btn--block btn--lg" id="cart-checkout">Finalizar pedido</button>
+        <button type="button" class="btn btn--link btn--block" id="cart-clear">Limpar carrinho</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ====================== MODAL DE CHECKOUT ====================== -->
+  <div class="modal" id="modal-checkout" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__sheet sheet--checkout" role="document">
+      <header class="sheet__head">
+        <button class="icon-btn" type="button" id="checkout-back" aria-label="Voltar">
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg>
+        </button>
+        <div class="sheet__head-text">
+          <h2 class="sheet__head-title" id="checkout-title">Onde devemos entregar?</h2>
+          <p class="sheet__head-sub" id="checkout-step-label">Etapa 1 de 2</p>
+        </div>
+        <button class="icon-btn" type="button" data-close aria-label="Fechar checkout">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </header>
+      <div class="progress" aria-hidden="true"><span class="progress__bar" id="checkout-progress"></span></div>
+
+      <div class="sheet__scroll">
+        <!-- ETAPA 1 -->
+        <form class="form" id="checkout-form" novalidate>
+          <fieldset class="fieldset">
+            <legend class="fieldset__title">
+              <svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>
+              Endereço de entrega
+            </legend>
+            <div class="field">
+              <label class="field__label" for="co-rua">Rua <span class="req">*</span></label>
+              <input type="text" id="co-rua" name="rua" placeholder="Digite o nome da rua" autocomplete="address-line1" required>
+              <span class="field__error" id="err-rua"></span>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label class="field__label" for="co-numero">Número <span class="req">*</span></label>
+                <input type="text" id="co-numero" name="numero" placeholder="Nº da casa" inputmode="numeric" autocomplete="address-line2" required>
+                <span class="field__error" id="err-numero"></span>
+              </div>
+              <div class="field">
+                <label class="field__label" for="co-bairro">Bairro <span class="req">*</span></label>
+                <input type="text" id="co-bairro" name="bairro" placeholder="Digite o bairro" autocomplete="address-level3" required>
+                <span class="field__error" id="err-bairro"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label" for="co-referencia">Ponto de referência <small>opcional</small></label>
+              <input type="text" id="co-referencia" name="referencia" placeholder="Ex.: Próximo à praça">
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__title">
+              <svg class="icon" aria-hidden="true"><use href="#i-card"></use></svg>
+              Forma de pagamento
+            </legend>
+            <div class="pay-options" id="payment-options" role="radiogroup" aria-label="Forma de pagamento"></div>
+            <span class="field__error" id="err-pagamento"></span>
+
+            <div class="pay-extra" id="pay-note" hidden>
+              <p class="hint hint--info" id="pay-note-text"></p>
+            </div>
+
+            <div class="pay-extra" id="change-box" hidden>
+              <span class="field__label">Precisa de troco?</span>
+              <div class="segmented" role="radiogroup" aria-label="Precisa de troco?">
+                <label class="segmented__option">
+                  <input type="radio" name="troco-necessario" value="sim" id="troco-sim">
+                  <span>Sim</span>
+                </label>
+                <label class="segmented__option">
+                  <input type="radio" name="troco-necessario" value="nao" id="troco-nao" checked>
+                  <span>Não</span>
+                </label>
+              </div>
+              <div class="field" id="change-value-box" hidden>
+                <label class="field__label" for="co-troco">Valor para troco</label>
+                <div class="money-input">
+                  <span>R$</span>
+                  <input type="text" id="co-troco" name="troco" inputmode="decimal" placeholder="0,00" autocomplete="off">
+                </div>
+                <span class="field__error" id="err-troco"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__title">
+              <svg class="icon" aria-hidden="true"><use href="#i-note"></use></svg>
+              Observações do pedido
+            </legend>
+            <div class="field">
+              <label class="field__label sr-only" for="co-observacao">Observações do pedido</label>
+              <textarea id="co-observacao" rows="3" maxlength="300" placeholder="Ex.: Não colocar cebola, entregar na portaria, chamar no portão…"></textarea>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- ETAPA 2 -->
+        <div class="review" id="checkout-review" hidden>
+          <h3 class="review__title">Seu pedido</h3>
+          <ul class="review__items" id="review-items"></ul>
+          <dl class="summary">
+            <div class="summary__row"><dt>Subtotal</dt><dd id="review-subtotal">R$ 0,00</dd></div>
+            <div class="summary__row"><dt>Frete</dt><dd id="review-shipping">R$ 0,00</dd></div>
+            <div class="summary__row summary__row--total"><dt>Total</dt><dd id="review-total">R$ 0,00</dd></div>
+          </dl>
+          <div class="review__block">
+            <h4><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg> Entrega</h4>
+            <p id="review-address"></p>
+          </div>
+          <div class="review__block">
+            <h4><svg class="icon" aria-hidden="true"><use href="#i-card"></use></svg> Pagamento</h4>
+            <p id="review-payment"></p>
+          </div>
+          <div class="review__block" id="review-note-block" hidden>
+            <h4><svg class="icon" aria-hidden="true"><use href="#i-note"></use></svg> Observação</h4>
+            <p id="review-note"></p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="sheet__footer">
+        <button type="button" class="btn btn--primary btn--block btn--lg" id="checkout-next">
+          Continuar para revisão
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </button>
+        <button type="button" class="btn btn--whats btn--block btn--lg" id="checkout-send" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+          Enviar pedido pelo WhatsApp
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ====================== MODAL DE SUCESSO ====================== -->
+  <div class="modal modal--center" id="modal-success" role="dialog" aria-modal="true" aria-labelledby="success-title" hidden>
+    <div class="modal__overlay"></div>
+    <div class="modal__sheet sheet--success" role="document">
+      <div class="success">
+        <div class="success__art" aria-hidden="true">
+          <svg class="icon"><use href="#i-check"></use></svg>
+        </div>
+        <h2 class="success__title" id="success-title">Pedido preparado!</h2>
+        <p class="success__text">
+          Seu pedido <strong id="success-number">#1001</strong> foi encaminhado para o WhatsApp da loja.
+          É só enviar a mensagem para confirmar. Obrigado pela preferência!
+        </p>
+        <a class="btn btn--whats btn--block btn--lg" id="success-wa" href="#" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+          Abrir WhatsApp novamente
+        </a>
+        <button type="button" class="btn btn--ghost btn--block" data-close id="success-close">Voltar ao cardápio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================== SCRIPTS ====================== -->
+  <script src="js/icons.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Brownie quente com sorvete de creme e calda de chocolate">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="34%" r="78%">
+      <stop offset="0" stop-color="#3b2c25"/>
+      <stop offset="0.55" stop-color="#211a16"/>
+      <stop offset="1" stop-color="#0f0b09"/>
+    </radialGradient>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdfaf5"/>
+      <stop offset="0.55" stop-color="#ece4da"/>
+      <stop offset="1" stop-color="#bfb3a4"/>
+    </linearGradient>
+    <linearGradient id="top" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#6b3f24"/>
+      <stop offset="0.45" stop-color="#4d2a16"/>
+      <stop offset="1" stop-color="#33190d"/>
+    </linearGradient>
+    <linearGradient id="front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d2012"/>
+      <stop offset="1" stop-color="#1d0e07"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2a150b"/>
+      <stop offset="1" stop-color="#160a05"/>
+    </linearGradient>
+    <linearGradient id="sauce" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#472413"/>
+      <stop offset="1" stop-color="#170a05"/>
+    </linearGradient>
+    <radialGradient id="cream" cx="36%" cy="28%" r="74%">
+      <stop offset="0" stop-color="#fffdf9"/>
+      <stop offset="0.55" stop-color="#f9f1df"/>
+      <stop offset="1" stop-color="#dccbb0"/>
+    </radialGradient>
+    <filter id="soft" x="-45%" y="-45%" width="190%" height="190%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g fill="#ffd7a3" opacity="0.13" filter="url(#soft)">
+    <circle cx="152" cy="150" r="58"/><circle cx="880" cy="120" r="70"/><circle cx="946" cy="470" r="42"/>
+    <circle cx="84" cy="470" r="44"/><circle cx="300" cy="72" r="24"/><circle cx="700" cy="70" r="30"/>
+  </g>
+
+  <g id="subject" transform="translate(512 512) scale(1.24) translate(-512 -512)">
+    <ellipse cx="512" cy="286" rx="340" ry="240" fill="#ffb27a" opacity="0.1" filter="url(#soft)"/>
+
+    <ellipse cx="512" cy="712" rx="372" ry="158" fill="#000000" opacity="0.55" filter="url(#soft)"/>
+    <ellipse cx="512" cy="700" rx="366" ry="152" fill="url(#plate)"/>
+    <ellipse cx="512" cy="694" rx="330" ry="130" fill="#fdfbf7"/>
+    <ellipse cx="512" cy="694" rx="330" ry="130" fill="none" stroke="#d6cabb" stroke-width="4"/>
+    <ellipse cx="512" cy="684" rx="262" ry="98" fill="#ffffff" opacity="0.6"/>
+
+    <ellipse cx="520" cy="676" rx="218" ry="60" fill="url(#sauce)" opacity="0.62"/>
+    <path d="M320 660c86 56 292 72 396 20 24 26-56 64-190 64s-230-38-206-84z" fill="url(#sauce)" opacity="0.5"/>
+
+    <!-- brownie -->
+    <g>
+      <path d="M348 476l176-58 196 54-176 62z" fill="url(#top)"/>
+      <path d="M348 476v128l196 60V534z" fill="url(#front)"/>
+      <path d="M544 534l176-62v126l-176 64z" fill="url(#side)"/>
+      <path d="M348 476l176-58 196 54-176 62z" fill="#ffffff" opacity="0.05"/>
+      <path d="M372 470c48-18 92-32 134-44 44-12 84-8 126 8" stroke="#7a3f1e" stroke-width="9" fill="none" opacity="0.5" stroke-linecap="round"/>
+      <path d="M556 462c30-6 62 2 96 18" stroke="#8f4a22" stroke-width="8" fill="none" opacity="0.4" stroke-linecap="round"/>
+      <g fill="#a86440" opacity="0.55">
+        <circle cx="392" cy="462" r="6"/><circle cx="436" cy="446" r="4.5"/><circle cx="482" cy="452" r="5"/>
+        <circle cx="520" cy="440" r="4"/><circle cx="580" cy="456" r="5"/><circle cx="618" cy="470" r="3.5"/>
+        <circle cx="424" cy="528" r="4"/><circle cx="492" cy="552" r="3.5"/><circle cx="588" cy="566" r="4"/>
+      </g>
+      <path d="M392 486c18 38 12 62 2 88" stroke="#582c17" stroke-width="7" fill="none" opacity="0.55" stroke-linecap="round"/>
+      <path d="M596 540c-6 26-16 50-30 74" stroke="#4a2413" stroke-width="6" fill="none" opacity="0.5" stroke-linecap="round"/>
+      <!-- farelos -->
+      <g fill="#3a1e10">
+        <rect x="286" y="700" width="26" height="15" rx="4" transform="rotate(-12 299 707)"/>
+        <rect x="724" y="690" width="22" height="13" rx="4" transform="rotate(14 735 696)"/>
+        <rect x="742" y="716" width="16" height="10" rx="3" transform="rotate(-8 750 721)"/>
+      </g>
+    </g>
+
+    <!-- sorvete -->
+    <g>
+      <ellipse cx="640" cy="452" rx="96" ry="26" fill="#000000" opacity="0.4" filter="url(#soft)"/>
+      <circle cx="640" cy="406" r="94" fill="url(#cream)"/>
+      <path d="M582 372c20-24 58-34 90-22" stroke="#ffffff" stroke-width="13" stroke-linecap="round" fill="none" opacity="0.85"/>
+      <path d="M614 494c-12 22-10 42 4 56" stroke="#f7ecd6" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <path d="M570 486c-8 20-6 34 4 46" stroke="#f7ecd6" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M690 470c8 18 18 30 30 38" stroke="#f7ecd6" stroke-width="13" stroke-linecap="round" fill="none"/>
+      <path d="M646 462c26 4 46 16 54 34" stroke="#4a2716" stroke-width="11" fill="none" opacity="0.6" stroke-linecap="round"/>
+      <circle cx="676" cy="390" r="6" fill="#e8d9bd" opacity="0.9"/>
+      <circle cx="612" cy="424" r="4" fill="#ffffff" opacity="0.6"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Copo de suco de laranja natural com gelo">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="34%" r="76%">
+      <stop offset="0" stop-color="#3c3226"/>
+      <stop offset="0.55" stop-color="#221d17"/>
+      <stop offset="1" stop-color="#100e0c"/>
+    </radialGradient>
+    <linearGradient id="juice" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffbe3d"/>
+      <stop offset="0.45" stop-color="#f79311"/>
+      <stop offset="1" stop-color="#cf6a06"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="0.18" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="0.8" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="straw" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d92b38"/>
+      <stop offset="0.5" stop-color="#f4575f"/>
+      <stop offset="1" stop-color="#a81722"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffc55a"/>
+      <stop offset="1" stop-color="#f08a0c"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="drop" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <clipPath id="glassClip">
+      <path d="M398 292h228l-26 500q-4 36-88 36t-88-36z"/>
+    </clipPath>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g id="bokeh-layer">  <g fill="#ffd7a3" opacity="0.12" filter="url(#soft)">
+    <circle cx="146" cy="176" r="52"/><circle cx="880" cy="132" r="66"/><circle cx="932" cy="648" r="44"/>
+    <circle cx="86" cy="706" r="38"/><circle cx="304" cy="86" r="26"/><circle cx="762" cy="890" r="30"/>
+    <circle cx="640" cy="80" r="18"/><circle cx="120" cy="420" r="22"/>
+  </g>
+  </g>
+  <g id="subject" transform="translate(512 512) scale(1.38) translate(-512 -512)">
+  <ellipse cx="512" cy="300" rx="340" ry="260" fill="#ffb35c" opacity="0.08" filter="url(#soft)"/>
+  <ellipse cx="512" cy="866" rx="268" ry="36" fill="#000000" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="512" cy="860" rx="178" ry="24" fill="#000000" opacity="0.5"/>
+
+  <g clip-path="url(#glassClip)">
+    <rect x="390" y="330" width="250" height="520" fill="url(#juice)"/>
+    <ellipse cx="515" cy="336" rx="122" ry="24" fill="#ffd479" opacity="0.85"/>
+    <g fill="#ffffff" opacity="0.38">
+      <rect x="442" y="392" width="86" height="82" rx="16" transform="rotate(-12 485 433)"/>
+      <rect x="546" y="446" width="78" height="74" rx="14" transform="rotate(16 585 483)"/>
+      <rect x="470" y="520" width="70" height="66" rx="12" transform="rotate(6 505 553)"/>
+    </g>
+    <g fill="#ffffff" opacity="0.16">
+      <rect x="418" y="470" width="30" height="90" rx="15"/>
+      <rect x="600" y="520" width="24" height="120" rx="12"/>
+    </g>
+    <g fill="#ffffff" opacity="0.2" filter="url(#drop)">
+      <circle cx="430" cy="700" r="6"/><circle cx="452" cy="752" r="4.5"/><circle cx="600" cy="690" r="5"/>
+      <circle cx="588" cy="756" r="6.5"/>
+    </g>
+  </g>
+
+  <path d="M398 292h228l-26 500q-4 36-88 36t-88-36z" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.34" stroke-width="5"/>
+  <ellipse cx="512" cy="292" rx="114" ry="22" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="5"/>
+
+  <g transform="rotate(11 590 380)">
+    <rect x="574" y="150" width="30" height="330" rx="15" fill="url(#straw)"/>
+    <g fill="#ffffff" opacity="0.75">
+      <rect x="574" y="186" width="30" height="18"/>
+      <rect x="574" y="238" width="30" height="18"/>
+      <rect x="574" y="290" width="30" height="18"/>
+      <rect x="574" y="342" width="30" height="18"/>
+      <rect x="574" y="394" width="30" height="18"/>
+    </g>
+  </g>
+
+  <g transform="rotate(-14 636 322)">
+    <circle cx="636" cy="322" r="66" fill="url(#orange)"/>
+    <circle cx="636" cy="322" r="56" fill="#ffd382"/>
+    <g stroke="#f2910f" stroke-width="5" stroke-linecap="round" opacity="0.75">
+      <path d="M636 272v100"/><path d="M591 296l90 52"/><path d="M591 348l90-52"/>
+    </g>
+    <circle cx="636" cy="322" r="66" fill="none" stroke="#e07c05" stroke-width="7"/>
+    <circle cx="636" cy="322" r="66" fill="#ffffff" opacity="0.08"/>
+  </g>
+
+  </g>
+</svg>
